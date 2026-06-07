@@ -1,0 +1,32 @@
+# Virtual environment
+manim_env/
+
+# Manim output
+media/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution
+*.egg-info/
+dist/
+build/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Trae
+.trae/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

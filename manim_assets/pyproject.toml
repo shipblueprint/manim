@@ -1,0 +1,6 @@
+[project]
+name = "manim-assets"
+version = "0.1.0"
+description = "Premium Manim asset library for math visualizations"
+requires-python = ">=3.8"
+dependencies = ["manim"]
