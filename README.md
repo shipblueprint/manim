@@ -1,6 +1,6 @@
 # Manim Assets — Mathematical Animation Library
 
-[![GitHub](https://img.shields.io/badge/GitHub-shipblueprint%2Fmanimlib-blue?logo=github)](https://github.com/shipblueprint/manimlib)
+[![GitHub](https://img.shields.io/badge/GitHub-shipblueprint%2Fmanimlib-blue)](https://github.com/shipblueprint/manimlib)
 
 A premium **Manim** (Mathematical Animation) asset library for creating high-quality math visualizations — statistics, calculus, linear algebra, geometry, machine learning, data structures, CS theory, and more.
 
