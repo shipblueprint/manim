@@ -1,8 +1,23 @@
 # Virtual environment
 manim_env/
+.venv/
+env/
+venv/
+ENV/
 
 # Manim output
 media/
+images/
+videos/
+Tex/
+texts/
+*.mp4
+*.mov
+*.gif
+*.png
+*.jpg
+*.jpeg
+*.svg
 
 # Python bytecode
 __pycache__/
@@ -14,19 +29,38 @@ __pycache__/
 dist/
 build/
 *.egg
+.eggs/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# Trae
+*.sublime-*
+.cursor/
 .trae/
+.aider*
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Logs
 *.log
+logs/
+
+# Others
+*.tmp
+.cache/
+*.bak
+*.old
