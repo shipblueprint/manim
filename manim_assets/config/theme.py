@@ -1,78 +1,69 @@
-"""Brand theme: the single source of truth for colors and fonts.
-
-Values live in ``theme.toml``; this module only loads them, registers any font
-files bundled in ``fonts/``, and exposes resolved tokens for scenes.
-"""
-
-from __future__ import annotations
-
-import tomllib
-import warnings
+"""Theme loader for Manim - loads from config/theme.toml."""
+import os
 from pathlib import Path
-from typing import Any
 
-CONFIG_DIR = Path(__file__).resolve().parent
-THEME_PATH = CONFIG_DIR / "theme.toml"
-
-
-def _load_theme(path: Path) -> tuple[dict[str, str], dict[str, str], dict[str, Any]]:
-    with path.open("rb") as handle:
-        theme = tomllib.load(handle)
-    palette, roles, fonts = theme["palette"], theme["roles"], theme["fonts"]
-
-    unknown = sorted({ref for ref in roles.values() if ref not in palette})
-    if unknown:
-        raise KeyError(
-            f"{path}: [roles] {', '.join(unknown)} is not a key in [palette]"
-        )
-    return palette, {role: palette[ref] for role, ref in roles.items()}, fonts
+# Try to import tomllib (Python 3.11+) or toml
+try:
+    import tomllib
+except ImportError:
+    try:
+        import toml as tomllib
+    except ImportError:
+        tomllib = None
 
 
-PALETTE, ROLES, FONTS = _load_theme(THEME_PATH)
-COLORS = {**PALETTE, **ROLES}
-
-# Roles scenes consume
-BG_COLOR = ROLES["background"]
-TEXT_COLOR = ROLES["foreground"]
-ACCENT_COLOR = ROLES["accent"]
-MUTED_COLOR = ROLES["muted"]
-
-# Type
-HEADING_FONT = FONTS["heading"]
-BODY_FONT = FONTS["body"]
-
-
-def _register_bundled_fonts() -> None:
-    """Make the brand fonts usable without a system-wide install."""
-    import manimpango
-
-    fonts_dir = CONFIG_DIR / FONTS.get("fonts_dir", "fonts")
-    if not fonts_dir.is_dir():
-        return
-    for font_file in sorted(fonts_dir.iterdir()):
-        if font_file.suffix.lower() in {".ttf", ".otf"}:
-            manimpango.register_font(str(font_file))
+def _load_theme():
+    theme_path = Path(__file__).parent / "theme.toml"
+    if tomllib and theme_path.exists():
+        with open(theme_path, "rb") as f:
+            if hasattr(tomllib, "load"):
+                data = tomllib.load(f)
+            else:
+                f.seek(0)
+                data = tomllib.load(f)
+        return data.get("colors", {}), data.get("fonts", {})
+    return {}, {}
 
 
-def _apply_text_defaults() -> None:
-    from manim import DecimalNumber, NumberLine, Text
+_colors, _fonts = _load_theme()
 
-    _register_bundled_fonts()
-    Text.set_default(font=BODY_FONT)
-    # Axis labels reach the renderer through NumberLine.label_constructor, which
-    # defaults to MathTex and therefore to a TeX distribution. Text-based labels
-    # keep the brand font and let the library render anywhere.
-    NumberLine.set_default(label_constructor=Text)
-    DecimalNumber.set_default(mob_class=Text)
+# Core colors from brand
+BG_COLOR = _colors.get("bg_dark", "#15100b")
+BACKGROUND_COLOR = BG_COLOR
+SURFACE_COLOR = _colors.get("bg_surface", "#231a14")
+TEXT_COLOR = _colors.get("text_primary", "#F5EFE7")
+TEXT_PRIMARY = TEXT_COLOR
+TEXT_SECONDARY = _colors.get("text_primary", "#F5EFE7")
+ACCENT_COLOR = _colors.get("text_accent", "#BB9457")
+ACCENT = ACCENT_COLOR
+MUTED_COLOR = _colors.get("text_accent", "#BB9457")
+MUTED = MUTED_COLOR
+CTA_PRIMARY = _colors.get("cta_primary", "#6F1D1B")
+CTA_HOVER = _colors.get("cta_hover", "#5a1715")
+WARNING_COLOR = _colors.get("text_accent", "#BB9457")
+ERROR_COLOR = _colors.get("cta_primary", "#6F1D1B")
+SUCCESS_COLOR = _colors.get("text_accent", "#BB9457")
 
-    missing = [name for name in (HEADING_FONT, BODY_FONT) if name not in Text.font_list()]
-    if missing:
-        warnings.warn(
-            f"brand fonts not available: {', '.join(missing)}. "
-            f"Drop their .ttf/.otf files in {CONFIG_DIR / FONTS.get('fonts_dir', 'fonts')} "
-            "or install them; Pango will substitute a fallback.",
-            stacklevel=2,
-        )
+# Illustration colors
+ILLUSTRATION_STROKE_LIGHT = _colors.get("ILLUSTRATION_STROKE_LIGHT", "#432818")
+ILLUSTRATION_SHADOW_LIGHT = _colors.get("ILLUSTRATION_SHADOW_LIGHT", "#6F1D1B")
+ILLUSTRATION_STROKE_DARK = _colors.get("ILLUSTRATION_STROKE_DARK", "#EFE3D2")
+ILLUSTRATION_SHADOW_DARK = _colors.get("ILLUSTRATION_SHADOW_DARK", "#432818")
+ILLUSTRATION_FILL_GOLD = _colors.get("ILLUSTRATION_FILL_GOLD", "#BB9457")
 
+# Fonts
+UI_FONT = _fonts.get("UI_FONT", "Inter")
+DISPLAY_FONT = _fonts.get("DISPLAY_FONT", "Playfair Display")
+HEADING_FONT = _fonts.get("HEADING_FONT", "Playfair Display")
+BODY_FONT = _fonts.get("BODY_FONT", "Inter")
+MONO_FONT = _fonts.get("MONO_FONT", "Inter")
 
-_apply_text_defaults()
+__all__ = [
+    "BG_COLOR", "BACKGROUND_COLOR", "SURFACE_COLOR",
+    "TEXT_COLOR", "TEXT_PRIMARY", "TEXT_SECONDARY",
+    "ACCENT_COLOR", "ACCENT", "MUTED_COLOR", "MUTED",
+    "CTA_PRIMARY", "CTA_HOVER", "WARNING_COLOR", "ERROR_COLOR", "SUCCESS_COLOR",
+    "ILLUSTRATION_STROKE_LIGHT", "ILLUSTRATION_SHADOW_LIGHT",
+    "ILLUSTRATION_STROKE_DARK", "ILLUSTRATION_SHADOW_DARK", "ILLUSTRATION_FILL_GOLD",
+    "UI_FONT", "DISPLAY_FONT", "HEADING_FONT", "BODY_FONT", "MONO_FONT",
+]

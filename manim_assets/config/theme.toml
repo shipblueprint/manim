@@ -1,30 +1,36 @@
-# Brand theme — single source of truth for Manim Assets.
-# Every color and font a scene uses resolves from this file.
-# Rebrand: edit here, drop new font files in config/fonts/. No scene edits needed.
-# Values taken from brand-design-guidelines.html v1.0.
+# Brand Videos/Carousels - Design System Tokens
+# https://github.com/shipblueprint/manim
 
-[palette]
-harvest_gold    = "#BB9457"   # Primary · 60%
-espresso        = "#432818"   # Secondary · dark
-rust_clay       = "#99582A"   # Supporting
-deep_maroon     = "#6F1D1B"   # Accent · text on light surfaces
-ivory_porcelain = "#EFE3D2"   # Light surface / highlight
-ink             = "#2A1A10"   # Body ink on light surfaces
+[colors]
+# Core
+bg_dark = "#15100b"
+bg_surface = "#231a14"
+text_primary = "#F5EFE7"
+text_accent = "#BB9457"
+cta_primary = "#6F1D1B"
+cta_hover = "#5a1715"
 
-# Roles name what a color is *for*; scenes consume roles, never raw palette entries.
-# Remap a role here to reassign it everywhere at once.
-[roles]
-# "Videos" row of the guidelines: Espresso background, Ivory Porcelain text,
-# Harvest Gold lower-thirds, Deep Maroon keyword callouts.
-background = "espresso"
-foreground = "ivory_porcelain"
-muted      = "rust_clay"      # axes, grid, secondary labels
-accent     = "harvest_gold"   # curves, highlights, hero fills
-callout    = "deep_maroon"    # keyword pills: use as a fill under foreground text,
-                              # it is too dark to read as text on the Espresso background
+# Legacy mappings for compatibility
+BACKGROUND = "#15100b"
+SURFACE = "#231a14"
+TEXT_PRIMARY = "#F5EFE7"
+TEXT_SECONDARY = "#F5EFE7"
+ACCENT = "#BB9457"
+MUTED = "#BB9457"
+WARNING = "#BB9457"
+ERROR = "#6F1D1B"
+SUCCESS = "#BB9457"
+
+# Illustration
+ILLUSTRATION_STROKE_LIGHT = "#432818"
+ILLUSTRATION_SHADOW_LIGHT = "#6F1D1B"
+ILLUSTRATION_STROKE_DARK = "#EFE3D2"
+ILLUSTRATION_SHADOW_DARK = "#432818"
+ILLUSTRATION_FILL_GOLD = "#BB9457"
 
 [fonts]
-heading = "Playfair Display"   # scene titles
-body    = "Inter"              # labels, captions, numbers
-fonts_dir = "fonts"            # .ttf/.otf dropped here are registered with Pango at import
-                               # bundled: playfairdisplay.ttf, inter.ttf (variable fonts, OFL)
+UI_FONT = "Inter"
+DISPLAY_FONT = "Playfair Display"
+HEADING_FONT = "Playfair Display"
+BODY_FONT = "Inter"
+MONO_FONT = "Inter"
