@@ -6,7 +6,7 @@ from manim import Scene, Text, VGroup, Rectangle, UP, DOWN, Create, FadeIn, Fade
 from typing import List
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class SortingScene(Scene):
@@ -75,7 +75,7 @@ class SortingScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Bubble Sort", font_size=24, color=TEXT_COLOR)
+        title = Text("Bubble Sort", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -120,7 +120,7 @@ class QuickSortScene(SortingScene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Quick Sort", font_size=24, color=TEXT_COLOR)
+        title = Text("Quick Sort", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -188,7 +188,7 @@ class MergeSortScene(SortingScene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Merge Sort", font_size=24, color=TEXT_COLOR)
+        title = Text("Merge Sort", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 

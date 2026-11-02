@@ -3,9 +3,6 @@ import sys
 import os
 import shutil
 
-# Add MiKTeX to PATH so dvisvgm is found
-os.environ['PATH'] = os.environ.get('PATH', '') + r';C:\Users\lee\AppData\Local\Programs\MiKTeX\miktex\bin\x64'
-
 from manim import config
 config.transparent = True
 

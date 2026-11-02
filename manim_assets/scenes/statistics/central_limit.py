@@ -5,7 +5,7 @@ Central Limit Theorem Scene - Distributions converging to normal.
 from manim import Scene, Axes, Text, VGroup, Polygon, UP, DOWN, LEFT, RIGHT, Create, FadeIn
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class CentralLimitTheoremScene(Scene):
@@ -60,13 +60,14 @@ class CentralLimitTheoremScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Central Limit Theorem", font_size=24, color=TEXT_COLOR)
+        title = Text("Central Limit Theorem", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.4)
         self.play(FadeIn(title), run_time=0.5)
 
         subtitle = Text(
             "Sample means from Uniform[0,1] converge to Normal",
             font_size=16, color=MUTED_COLOR,
+            font=HEADING_FONT,
         )
         subtitle.next_to(title, DOWN, buff=0.15)
         self.play(FadeIn(subtitle), run_time=0.3)

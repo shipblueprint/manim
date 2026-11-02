@@ -12,10 +12,10 @@ Built with [Manim Community](https://github.com/ManimCommunity/manim/) (the comm
 
 - 📐 **50 Animated Scenes** across 9 categories — ready to render and use in educational content.
 - 🎨 **Brand Theme as Data** — All colors and fonts come from `config/theme.toml`, loaded by `config/theme.py`. Change the theme file → every scene updates; scene code never hardcodes a hex value or a font name.
-- 🖥️ **Batch Rendering** — Render all scenes at once with `render_all.bat`, or render individual scenes with `render_scene.py`.
+- 🖥️ **Batch Rendering** — Render all scenes at once with `scripts/render.py --all`, or render individual scenes with `scripts/render.py`.
 - 🧩 **Modular Architecture** — Each scene is an independent Python class in a well-organized package structure.
 - 🌐 **Transparent Background** — masters render with alpha (`config.transparent = True`) for easy compositing in video editors, and `flatten_previews.py` writes brand-colored, opaque copies for review.
-- 🔧 **Cross-Platform** — scenes render on Windows (`manim_env` + `render_all.bat`) and on Linux/macOS (`setup.sh`).
+- 🔧 **Cross-Platform** — scenes render on Windows (`manim_env` + `scripts/render.py --all`) and on Linux (`scripts/setup.sh`).
 
 ---
 
@@ -93,11 +93,11 @@ manim/
 ├── manim_env/                  # Windows venv (uv, Python 3.11) — gitignored
 ├── media/                      # Rendered output (gitignored): videos/ masters, preview/ opaque copies
 ├── brand-design-guidelines.html # Source of the palette and type scale in theme.toml
-├── render_scene.py             # Render a single scene by module/class name
-├── render_new.py               # Batch render the 15 "new" scenes
+├── scripts/render.py             # Render a single scene by module/class name
+├── scripts/render.py               # Batch render the 15 "new" scenes
 ├── flatten_previews.py         # Flatten the alpha masters into media/preview/*.mp4
-├── render_all.bat              # Batch render all 50 scenes (Windows)
-├── setup.sh                    # Linux/macOS install: system deps + .venv + manim + smoke render
+├── scripts/render.py --all              # Batch render all 50 scenes (Windows)
+├── scripts/setup.sh                    # Linux/macOS install: system deps + .venv + manim + smoke render
 └── .gitignore
 ```
 
@@ -109,13 +109,13 @@ manim/
 
 - **Python 3.11+** (the theme loader uses stdlib `tomllib`)
 - **Manim** — the community edition, installed in the virtual environment
-- **Pango, Cairo and ffmpeg** (Linux/macOS) — `./setup.sh` installs them
+- **Pango, Cairo and ffmpeg** (Linux/macOS) — `./scripts/setup.sh` installs them
 - No LaTeX: every string, including axis labels, is drawn with Pango (`Text`). `theme.py` sets `NumberLine.set_default(label_constructor=Text)`, which replaces Manim's default `MathTex` digits — without it, any scene with numbered axes shells out to `latex` + `dvisvgm`.
 
 ### Render a Single Scene
 
 ```bash
-python render_scene.py manim_assets.scenes.statistics.normal_distribution NormalDistributionScene statistics
+python scripts/render.py manim_assets.scenes.statistics.normal_distribution NormalDistributionScene statistics
 ```
 
 Arguments:
@@ -126,7 +126,7 @@ Arguments:
 On Linux/macOS, prefix with the venv interpreter and `PYTHONPATH`:
 
 ```bash
-PYTHONPATH=. .venv/bin/python render_scene.py manim_assets.scenes.statistics.normal_distribution NormalDistributionScene statistics
+PYTHONPATH=. .venv/bin/python scripts/render.py manim_assets.scenes.statistics.normal_distribution NormalDistributionScene statistics
 ```
 
 ### Render All Scenes
@@ -134,17 +134,17 @@ PYTHONPATH=. .venv/bin/python render_scene.py manim_assets.scenes.statistics.nor
 Windows:
 
 ```bat
-render_all.bat
+scripts/render.py --all
 ```
 
 This clears previous renders, then renders all 50 scenes in sequence, organizing output by category.
-There is no shell equivalent yet — on Linux/macOS, drive `render_scene.py` from the list in
-`render_all.bat` or `render_new.py`.
+There is no shell equivalent yet — on Linux/macOS, drive `scripts/render.py` from the list in
+`scripts/render.py --all` or `scripts/render.py`.
 
 ### Render the 15 New Scenes Only
 
 ```bash
-python render_new.py
+python scripts/render.py
 ```
 
 ### Output
@@ -154,7 +154,7 @@ Rendered `.mov` files are placed in:
 media/videos/<quality>/<category>/<SceneName>.mov
 ```
 
-The `render_scene.py` script moves output to the correct category subfolder automatically.
+The `scripts/render.py` script moves output to the correct category subfolder automatically.
 
 ### Review Previews (opaque, brand background baked in)
 
@@ -271,20 +271,20 @@ uv pip install manim
 verifies the theme tokens resolve, and writes a low-quality smoke-render PNG:
 
 ```bash
-./setup.sh              # needs sudo for the system packages
-./setup.sh --skip-deps  # re-run after installing the packages yourself
-./setup.sh --no-smoke   # stop once the Python environment is ready
+./scripts/setup.sh              # needs sudo for the system packages
+./scripts/setup.sh --skip-deps  # re-run after installing the packages yourself
+./scripts/setup.sh --no-smoke   # stop once the Python environment is ready
 ```
 
-`MANIM_VERSION=0.20.1 ./setup.sh` pins the version to match the Windows venv.
+`MANIM_VERSION=0.20.1 ./scripts/setup.sh` pins the version to match the Windows venv.
 
 ### Adding a New Scene
 
 1. Choose the category directory (or create a new one in `manim_assets/scenes/`).
 2. Create a new Python file with your scene class.
 3. Follow the rules in [Writing a scene that stays on-brand](#writing-a-scene-that-stays-on-brand) — theme tokens only, never a raw hex value or font name.
-4. Add the scene to `render_all.bat` (or `render_new.py` for new additions).
-5. Render with `render_scene.py` (1080p60, transparent `.mov`), then `flatten_previews.py` for a copy you can actually review.
+4. Add the scene to `scripts/render.py --all` (or `scripts/render.py` for new additions).
+5. Render with `scripts/render.py` (1080p60, transparent `.mov`), then `flatten_previews.py` for a copy you can actually review.
 
 ### Theme Architecture
 

@@ -5,7 +5,7 @@ Decision Boundary Scene - Separating 2D point clusters.
 from manim import Scene, Axes, Text, VGroup, Dot, Line, UP, DOWN, Create, FadeIn
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class DecisionBoundaryScene(Scene):
@@ -28,7 +28,7 @@ class DecisionBoundaryScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Decision Boundary", font_size=24, color=TEXT_COLOR)
+        title = Text("Decision Boundary", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.5)
 

@@ -3,13 +3,13 @@ Linear Transformations Scene - Visualize 2D linear transformations with grid def
 """
 
 from manim import (
-    Scene, Text, VGroup, Line, Arrow, NumberPlane, RIGHT, UP,
+    Scene, Text, VGroup, Line, Arrow, NumberPlane, RIGHT, UP, DOWN,
     Create, FadeIn, FadeOut, Transform,
 )
 from typing import List
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 def _make_grid_lines(x_range, y_range, step=1, color=MUTED_COLOR, width=0.5, opacity=0.3):

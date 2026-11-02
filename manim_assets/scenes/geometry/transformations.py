@@ -2,10 +2,10 @@
 Transformations Scene - Visualize geometric transformations.
 """
 
-from manim import Scene, Text, VGroup, Square, Polygon, Arrow, Dot, UP, DOWN, LEFT, RIGHT, Create, FadeIn, FadeOut, Transform, Rotate, ORIGIN
+from manim import Scene, Text, VGroup, Square, Polygon, Arrow, Dot, UP, DOWN, LEFT, RIGHT, DL, Create, FadeIn, FadeOut, Transform, Rotate, ORIGIN
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class ReflectionScene(Scene):
@@ -21,7 +21,7 @@ class ReflectionScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Reflection across Y-axis", font_size=24, color=TEXT_COLOR)
+        title = Text("Reflection across Y-axis", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -97,14 +97,14 @@ class RotationCenterScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Rotation around Center", font_size=24, color=TEXT_COLOR)
+        title = Text("Rotation around Center", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
         # Center point
         center = Dot(ORIGIN, color=TEXT_COLOR, radius=0.08)
         center_label = Text("center", font_size=14, color=TEXT_COLOR)
-        center_label.next_to(center, DOWN_LEFT, buff=0.15)
+        center_label.next_to(center, DL, buff=0.15)
 
         # Original shape
         square = Square(
@@ -153,7 +153,7 @@ class TransformScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Geometric Transformations", font_size=24, color=TEXT_COLOR)
+        title = Text("Geometric Transformations", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 

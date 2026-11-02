@@ -1,11 +1,25 @@
-"""Configuration package for Manim Assets."""
+"""Configuration package for Manim Assets.
 
-from .colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR, COLORS
+`theme.toml` is the single source of truth; `theme.py` resolves it into the
+tokens scenes import.
+"""
+
+from .theme import (
+    ACCENT_COLOR,
+    BG_COLOR,
+    BODY_FONT,
+    COLORS,
+    HEADING_FONT,
+    MUTED_COLOR,
+    TEXT_COLOR,
+)
 
 __all__ = [
-    "BG_COLOR",
-    "TEXT_COLOR",
     "ACCENT_COLOR",
-    "MUTED_COLOR",
+    "BG_COLOR",
+    "BODY_FONT",
     "COLORS",
+    "HEADING_FONT",
+    "MUTED_COLOR",
+    "TEXT_COLOR",
 ]

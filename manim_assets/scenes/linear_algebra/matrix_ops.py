@@ -5,7 +5,7 @@ Matrix Operations Scene - Visualize matrix multiplication and transformations.
 from manim import Scene, Text, VGroup, Rectangle, Square, Arrow, Polygon, UP, DOWN, LEFT, RIGHT, Create, FadeIn, FadeOut, Transform
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class MatrixOpsScene(Scene):
@@ -24,7 +24,7 @@ class MatrixOpsScene(Scene):
         m = self.matrix
 
         # Title
-        title = Text("Matrix Transformation", font_size=24, color=TEXT_COLOR)
+        title = Text("Matrix Transformation", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
 
         # Matrix display - positioned top-left

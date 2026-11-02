@@ -6,7 +6,7 @@ from manim import Scene, Axes, Text, VGroup, Polygon, UP, DOWN, Create, FadeIn
 import numpy as np
 from math import erf, sqrt
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class NormalDistributionScene(Scene):
@@ -40,7 +40,7 @@ class NormalDistributionScene(Scene):
             exponent = -0.5 * ((x - mu) / sigma) ** 2
             return coeff * np.exp(exponent)
 
-        title = Text("Normal Distribution", font_size=24, color=TEXT_COLOR)
+        title = Text("Normal Distribution", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
 
         mu_label = Text(
@@ -62,7 +62,7 @@ class NormalDistributionScene(Scene):
                 "stroke_width": 1.5,
                 "include_numbers": True,
                 "font_size": 20,
-                "decimal_number_config": {"color": MUTED_COLOR, "num_decimal_places": 0},
+                "decimal_number_config": {"color": MUTED_COLOR, "num_decimal_places": 1},
             },
             tips=False,
         )

@@ -4,7 +4,7 @@ System Flow Scene - Visualize data flow through a system architecture.
 
 from manim import Scene, Text, VGroup, Rectangle, Arrow, Dot, UP, DOWN, LEFT, RIGHT, Create, FadeIn, FadeOut, ORIGIN
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class SystemFlowScene(Scene):
@@ -16,7 +16,7 @@ class SystemFlowScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("System Architecture", font_size=24, color=TEXT_COLOR)
+        title = Text("System Architecture", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 

@@ -5,7 +5,7 @@ Vector Operations Scene - Visualize 2D and 3D vectors and operations.
 from manim import Scene, Text, Arrow, VGroup, Dot, UP, DOWN, LEFT, RIGHT, Create, FadeIn, Transform
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class Vector2DScene(Scene):
@@ -17,7 +17,7 @@ class Vector2DScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("2D Vectors", font_size=24, color=TEXT_COLOR)
+        title = Text("2D Vectors", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -72,7 +72,7 @@ class Vector3DScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("3D Vectors", font_size=24, color=TEXT_COLOR)
+        title = Text("3D Vectors", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -145,7 +145,7 @@ class VectorOperationsScene(Scene):
     def construct(self) -> None:
         self.camera.background_color = BG_COLOR
 
-        title = Text("Vector Addition (Parallelogram Rule)", font_size=24, color=TEXT_COLOR)
+        title = Text("Vector Addition (Parallelogram Rule)", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 

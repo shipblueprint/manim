@@ -1,0 +1,36 @@
+:root {
+  /* Brand */
+  --brand-harvest: #BB9457;
+  --brand-espresso: #432818;
+  --brand-rust: #99582A;
+  --brand-maroon: #6F1D1B;
+  --brand-ivory: #EFE3D2;
+  --brand-white: #FFFFFF;
+
+  /* Videos/Carousels */
+  --bg-dark: #15100b;
+  --bg-surface: #231a14;
+  --text-primary: #F5EFE7;
+  --text-accent: #BB9457;
+  --cta-primary: #6F1D1B;
+  --cta-hover: #5a1715;
+
+  /* Illustration */
+  --ill-stroke-light: #432818;
+  --ill-shadow-light: #6F1D1B;
+  --ill-stroke-dark: #EFE3D2;
+  --ill-shadow-dark: #432818;
+  --ill-fill-gold: #BB9457;
+
+  /* Typography */
+  --font-ui: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+}

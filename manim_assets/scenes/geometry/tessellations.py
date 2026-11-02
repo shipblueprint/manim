@@ -2,11 +2,11 @@
 Tessellation Scene - Visualize repeating tiling patterns.
 """
 
-from manim import Scene, Text, VGroup, RegularPolygon, Polygon, Square, UP, Create, FadeIn
+from manim import Scene, Text, VGroup, RegularPolygon, Polygon, Square, UP, DOWN, Create, FadeIn, FadeOut
 from typing import List
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class TessellationScene(Scene):
@@ -32,7 +32,7 @@ class TessellationScene(Scene):
 
     def _create_hexagon_tessellation(self) -> None:
         """Create hexagonal tessellation."""
-        title = Text("Hexagonal Tessellation", font_size=24, color=TEXT_COLOR)
+        title = Text("Hexagonal Tessellation", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -82,7 +82,7 @@ class TessellationScene(Scene):
 
     def _create_square_tessellation(self) -> None:
         """Create square tessellation."""
-        title = Text("Square Tessellation", font_size=24, color=TEXT_COLOR)
+        title = Text("Square Tessellation", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -126,7 +126,7 @@ class TessellationScene(Scene):
 
     def _create_triangle_tessellation(self) -> None:
         """Create triangle tessellation."""
-        title = Text("Triangle Tessellation", font_size=24, color=TEXT_COLOR)
+        title = Text("Triangle Tessellation", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)
 
@@ -198,6 +198,7 @@ class SymmetryGroupScene(Scene):
             f"{self.n_sides}-fold Rotational Symmetry",
             font_size=24,
             color=TEXT_COLOR,
+            font=HEADING_FONT,
         )
         title.to_edge(UP, buff=0.5)
         self.play(FadeIn(title), run_time=0.4)

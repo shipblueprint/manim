@@ -1,0 +1,12 @@
+{
+  "name": "brand-videos",
+  "version": "1.1.0",
+  "displayName": "Brand Videos/Carousels",
+  "description": "GSAP/video optimized with dark surfaces, Inter 600-700, transparent PNG illustration recipe",
+  "source": "custom",
+  "tier": "free",
+  "tokenCount": 24,
+  "componentCount": 3,
+  "aesthetic": "Bold, cinematic, legible on dark",
+  "layoutUrl": ""
+}

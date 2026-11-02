@@ -5,7 +5,7 @@ Eigenvalue and Eigenvector Visualization Scene.
 from manim import Scene, Text, Arrow, VGroup, Dot, UP, DOWN, LEFT, RIGHT, Create, FadeIn, FadeOut, Transform
 import numpy as np
 
-from manim_assets.config.colors import BG_COLOR, TEXT_COLOR, ACCENT_COLOR, MUTED_COLOR
+from manim_assets.config import ACCENT_COLOR, BG_COLOR, HEADING_FONT, MUTED_COLOR, TEXT_COLOR
 
 
 class EigenScene(Scene):
@@ -24,7 +24,7 @@ class EigenScene(Scene):
         m = self.matrix
 
         # Title and matrix display
-        title = Text("Eigenvectors", font_size=24, color=TEXT_COLOR)
+        title = Text("Eigenvectors", font_size=24, color=TEXT_COLOR, font=HEADING_FONT)
         title.to_edge(UP, buff=0.5)
 
         mat_text = Text(
